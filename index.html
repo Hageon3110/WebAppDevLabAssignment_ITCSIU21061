@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Labs Index</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #fafafa;
+    }
+    h1 {
+      color: #4b0082;
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 20px;
+    }
+    li {
+      margin: 6px 0;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+    li.folder::before {
+      content: "📁 ";
+    }
+    li.file::before {
+      content: "📄 ";
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+    a:hover {
+      color: #d97706;
+      text-decoration: underline;
+    }
+    .hidden {
+      display: none;
+    }
+    /* Thêm hiệu ứng nhỏ cho mở/đóng */
+    ul {
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Labs</h1>
+
+  <ul id="fileTree">
+    <li class="folder" onclick="toggleFolder(event)">lab1
+      <ul class="hidden">
+        <li class="file"><a href="lab1/ex1.html">ex1.html</a></li>
+        <li class="file"><a href="lab1/ex2.html">ex2.html</a></li>
+      </ul>
+    </li>
+
+    <li class="folder" onclick="toggleFolder(event)">lab2
+      <ul class="hidden">
+        <li class="file"><a href="lab2/ex1.html">ex1.html</a></li>
+        <li class="file"><a href="lab2/ex2.html">ex2.html</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    function toggleFolder(event) {
+      event.stopPropagation();
+      const folder = event.currentTarget;
+      const subList = folder.querySelector("ul");
+
+      // Nếu có thư mục con thì bật/tắt hiển thị
+      if (subList) {
+        subList.classList.toggle("hidden");
+      }
+    }
+  </script>
+</body>
+</html>

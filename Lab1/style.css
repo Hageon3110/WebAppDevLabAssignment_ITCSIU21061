@@ -1,0 +1,50 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: white;
+  max-width: 850px;     /* rộng hơn chút cho thoáng */
+  margin: 20px auto;    /* căn giữa */
+  padding: 20px;        /* tạo khoảng cách trong khung */
+  border: 1px solid #1E90FF; /* khung xanh dương */
+  line-height: 1.6;
+}
+
+/* logo căn trái */
+img {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* tiêu đề chính */
+h1 {
+  color: #008000;
+}
+
+/* đoạn guarantee có nền xanh nhạt */
+#guarantee {
+  background-color: #E0F0F0;
+  border-left: 6px solid #00A0A0;
+  padding: 10px 15px;
+  margin: 20px 0;
+  font-style: italic;
+}
+
+/* tiêu đề phụ */
+h2 {
+  color: #007B55;
+  border-bottom: 1px solid #007B55;
+  padding-bottom: 4px;
+}
+
+/* danh sách nhạc */
+ul {
+  list-style-type: disc;
+  margin-left: 30px;
+}
+
+.footer {
+  font-size: 0.9em;
+  color: gray;
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
