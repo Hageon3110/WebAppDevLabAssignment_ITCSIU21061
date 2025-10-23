@@ -1,0 +1,52 @@
+/* ====== BASIC STYLE ====== */
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px ;
+    margin:  30px auto;
+    padding: 20px;
+    line-height: 1.6;
+    border: 1px solid #000000;
+    border-radius: 20px;
+}
+
+/* ====== HEADINGS ====== */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.title {
+   color: #127768; /* green subtitle like “Junior Frontend Developer” */
+            font-weight: bold;
+}
+
+.section-title {
+    color: #2E8B57; /* xanh lá nhẹ */
+    border-bottom: 2px solid #2E8B57;
+    padding-bottom: 4px;
+    margin-top: 20px;
+}
+
+/* ====== LINKS ====== */
+a {
+    color: #1E90FF; /* xanh dương */
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* ====== LISTS ====== */
+ul {
+    list-style-type: circle; /* chấm tròn rỗng */
+    margin-left: 25px;
+}
+
+.guarantee {
+  background-color: #E0F0F0;
+  border-left: 6px solid #00A0A0;
+  padding: 10px 15px;
+  margin: 20px 0;
+  font-style: italic;
+}

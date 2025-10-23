@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validator</title>
+    <style>
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .show-password {
+            display: flex;
+            align-items: start;
+            gap: 5px;
+            margin-top: 10px;
+            font-size: 14px;
+            justify-content: flex-start;
+        }
+
+        label {
+            display: block;
+            /* margin-bottom: 5px; */
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input.valid {
+            border-color: #28a745;
+        }
+
+        input.invalid {
+            border-color: #dc3545;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Sign Up Form</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username">
+                <div class="error-message" id="usernameError"></div>
+
+                <!-- TODO: Add email field -->
+
+                <label for="email">Email</label>
+                <input type="text" id="email" placeholder="Enter your email">
+                <div class="error-message" id="emailError"></div>
+
+                <!-- TODO: Add password field -->
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password">
+                <div class="error-message" id="passwordError"></div>
+
+                <!-- TODO: Add confirm password field -->
+
+                <label for="confirmPassword"> Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm password">
+                <div class="error-message" id="confirmPasswordError"></div>
+                <div class="show-password">
+                    <input type="checkbox" id="showPasswords">
+                    <label for="showPasswords">Show passwords</label>
+                </div>
+            </div>
+
+
+            <button type="submit" id="submitBtn" disabled>Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        // TODO: Implement validation functions
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function validateUsername(username) {
+            // TODO: Check length (4-20) and alphanumeric
+            const usernameRegex = /^[a-zA-Z0-9]{4,20}$/;
+            return usernameRegex.test(username);
+
+        }
+
+        function validateEmail(email) {
+            // TODO: Use regex for email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePassword(password) {
+            // TODO: Check length >= 8, has uppercase, has number
+            const passwordRegex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+            return passwordRegex.test(password);
+
+        }
+
+        function validatePasswordMatch(pass1, pass2) {
+            // TODO: Compare passwords
+            return pass1 === pass2 && pass1 !== "";
+        }
+
+        function showError(fieldId, message) {
+            // TODO: Display error message
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            const inputField = document.getElementById(fieldId);
+            errorDiv.textContent = message;
+            errorDiv.classList.add('show');
+            inputField.classList.add('invalid');
+            inputField.classList.remove('valid');
+        }
+
+        function clearError(fieldId) {
+            // TODO: Clear error message
+            const errorDiv = document.getElementById(fieldId + 'Error');
+            const inputField = document.getElementById(fieldId);
+            errorDiv.textContent = "";
+            errorDiv.classList.remove('show');
+            inputField.classList.remove('invalid');
+            inputField.classList.add('valid');
+        }
+
+        function validateForm() {
+            // TODO: Validate all fields and enable/disable submit
+            let valid = true;
+
+            // Username
+            if (!validateUsername(usernameInput.value)) {
+                showError('username', 'Username must be 4-20 letters or numbers.');
+                valid = false;
+            } else {
+                clearError('username');
+            }
+
+            // Email
+            if (!validateEmail(emailInput.value)) {
+                showError('email', 'Enter a valid email address.');
+                valid = false;
+            } else {
+                clearError('email');
+            }
+
+            // Password
+            if (!validatePassword(passwordInput.value)) {
+                showError('password', 'Password must be ≥8 chars, include uppercase & number.');
+                valid = false;
+            } else {
+                clearError('password');
+            }
+
+            // Confirm Password
+            if (!validatePasswordMatch(passwordInput.value, confirmPasswordInput.value)) {
+                showError('confirmPassword', 'Passwords do not match.');
+                valid = false;
+            } else {
+                clearError('confirmPassword');
+            }
+
+            // Enable or disable submit button
+            submitBtn.disabled = !valid;
+        }
+
+        const showPasswordsCheckbox = document.getElementById('showPasswords');
+
+        showPasswordsCheckbox.addEventListener('change', function () {
+            const type = this.checked ? 'text' : 'password';
+            passwordInput.type = type;
+            confirmPasswordInput.type = type;
+        });
+
+
+        // TODO: Add event listeners for real-time validation
+        usernameInput.addEventListener('input', validateForm);
+        emailInput.addEventListener('input', validateForm);
+        passwordInput.addEventListener('input', validateForm);
+        confirmPasswordInput.addEventListener('input', validateForm);
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // TODO: Handle form submission
+            validateForm();
+            if (!submitBtn.disabled) {
+                alert('Form submitted successfully!');
+            }
+        });
+    </script>
+</body>
+
+</html>

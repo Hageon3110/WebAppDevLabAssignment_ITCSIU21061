@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-Column Flexbox Layout</title>
+  <style>
+    body {
+      background-color: #f4c98a; /* màu nền cam nhạt ngoài khung */
+      display: flex;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 900px; /* fixed-width layout */
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ccc;
+    }
+
+    header, footer {
+      background-color: white;
+      border: 1px solid #e0c675;
+      text-align: left;
+      padding: 10px;
+      font-weight: bold;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid #e0c675;
+    }
+
+    .sidebarA, .sidebarB, .main {
+      padding: 15px;
+      border-right: 1px solid #e0c675;
+    }
+
+    .sidebarA, .sidebarB {
+      width: 150px;
+      background-color: white;
+    }
+
+    .main {
+      font-weight: bold;
+      text-align: left;
+      flex: 1;
+      background-color: white;
+      border-right: 1px solid #e0c675;
+    }
+
+    .sidebarB {
+      border-right: none; /* bỏ border phải của cột cuối */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>Header</header>
+
+    <div class="content">
+      <div class="sidebarA"><b> Sidebar A</b></div>
+      <div class="main">Main content</div>
+      <div class="sidebarB"><b>Sidebar B</b></div>
+    </div>
+
+    <footer>Footer</footer>
+  </div>
+
+</body>
+</html>
